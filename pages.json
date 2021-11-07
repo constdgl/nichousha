@@ -33,6 +33,7 @@
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
+    // "navigationStyle": "custom",
     "navigationBarBackgroundColor": "#eeeeee",
     "backgroundColor": "#eaeaea"
   }

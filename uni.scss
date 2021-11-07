@@ -74,3 +74,49 @@ $uni-color-subtitle: #555555; // 二级标题颜色
 $uni-font-size-subtitle:26px;
 $uni-color-paragraph: #3F536E; // 文章段落颜色
 $uni-font-size-paragraph:15px;
+
+.text-xs {
+	font-size: 20upx;
+}
+.text-sm {
+	font-size: 24upx;
+}
+.text-df {
+	font-size: 28upx;
+}
+.text-lg {
+	font-size: 32upx;
+}
+.text-xl {
+	font-size: 36upx;
+}
+
+// 以下代码在 colorui/main.css 的 2999行 （padding同理）
+
+.margin-0 {
+	margin: 0;
+}
+.margin-xs {
+	margin: 10upx;
+}
+.margin-sm {
+	margin: 20upx;
+}
+.margin {
+	margin: 30upx;
+}
+
+// 由于 使用 flex 布局，可能会使用到 auto 的场景， 自己加了几个样式
+
+.margin-top-auto {
+	margin-top: auto;
+}
+.margin-bottom-auto {
+	margin-bottom: auto;
+}
+.margin-left-auto {
+	margin-left: auto;
+}
+.margin-right-auto {
+	margin-right: auto;
+}

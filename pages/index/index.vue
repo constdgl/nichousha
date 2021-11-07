@@ -4,6 +4,7 @@
 		<view class="text-area">
 			<text class="title">{{title}}</text>
 		</view> -->
+    <button type="default" class="bg-blue btn cu-btn" @tap='changeLang'>click</button>
   </view>
 </template>
 
@@ -15,7 +16,19 @@
       }
     },
     onLoad() {
-
+      // 获取db引用
+      const db = uniCloud.database() //代码块为cdb
+      // 使用uni-clientDB
+      db.collection('list')
+        .where({
+          name: "user" //传统MongoDB写法，不是jql写法。实际开发中推荐使用jql写法
+        }).get()
+        .then((res) => {
+          // res 为数据库查询结果
+        }).catch((err) => {
+          console.log(err.code); // 打印错误码
+          console.log(err.message); // 打印错误内容
+        })
     },
     methods: {
 

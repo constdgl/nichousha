@@ -5,6 +5,7 @@
   },
   "setting": {
     "bundle": false,
+    "cloudfunctionRoot": "cloudfunctions/",
     "userConfirmedBundleSwitch": false,
     "urlCheck": true,
     "scopeDataCheck": false,

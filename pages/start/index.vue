@@ -1,9 +1,23 @@
 <template>
-  <view class="contafier">
-    <div class="user">
-      <div class="user_img">{{ img_url }}</div>
-      <div class="user_name">{{ name }}</div>
+  <view class="login">
+    <div class="contia">
+      <view class="user-img">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view class="user-name">
+        <open-data type="userNickName"></open-data>
+      </view>
     </div>
+    <div class="box">
+      用户名：<input type="text" v-model="username">
+    </div>
+    <div class="box">
+      密码：<input type="text" v-model="password">
+    </div>
+
+    <button type="default" @click="getUserInfo" open-type="getUserInfo">登录</button>
+    <button type="default" @click="register" open-type="getUserInfo">注册</button>
+    <button type="default" @click="loginWithWechat">获取openid</button>
   </view>
 </template>
 
@@ -11,72 +25,112 @@
   export default {
     data() {
       return {
-        img_url: '', // 头像
-        name: '', // 名字
+        username: '',
+        password: '',
+        openid: '',
+        username: '',
+        isConfirm: false
       }
     },
     onShow() {
-      this.loginByWeixin();
+
     },
     methods: {
-      getWeixinCode() {
-        return new Promise((resolve, reject) => {
-          uni.login({
-            provider: 'weixin',
-            success(res) {
-              resolve(res.code)
-            },
-            fail(err) {
-              reject(new Error('微信登录失败'))
-            }
-          })
+      getUserInfo() {
+        if (!this.username && !this.password) {
+          this.$toast('请输入信息');
+          return;
+        }
+        let data = {
+          username: this.username,
+          password: this.password
+        };
+        this.$uniCloud('user', data).then(res => {
+          if (res.success) {
+            console.log(res)
+            this.$toast(res.result.msg)
+          } else {
+            this.$toast('登录失败')
+          }
+        });
+      },
+      /**
+       * 获取openid
+       */
+      loginWithWechat() {
+        let _this = this
+        uni.login({
+          async success(res) {
+            await _this.$uniCloud('loginWithWechat', {
+              js_code: res.code
+            }).then(res1 => {
+              console.log(res1.result.data.openid, 123)
+              _this.openid = res1.result.data.openid;
+              _this.$toast('openid=' + _this.openid)
+            }).catch(err=>{
+              _this.$toast(err)
+            })
+          }
         })
       },
-      loginByWeixin() {
-        this.getWeixinCode().then((code) => {
-          return uniCloud.callFunction({
-            name: 'login-by-weixin',
-            data: {
-              code
-            }
+      register() {
+        if (!this.username || !this.password) {
+          this.$toast('请填写正确信息')
+          return
+        }
+        let data = {
+          username: this.username,
+          password: this.password
+        }
+        // 这里我们使用原始写法
+        uniCloud.callFunction({
+          name: 'user',
+          // 因为登录注册都属于 use表，感觉index文件可能代码混杂，加个type加以区分，登录的type是get
+          data: Object.assign({}, data, {
+            type: 'add'
           })
-        }).then((res) => {
-          uni.showModal({
-            showCancel: false,
-            content: JSON.stringify(res.result)
-          })
-          if (res.result.code === 0) {
-            uni.setStorageSync('uni_id_token', res.result.token)
-            uni.setStorageSync('uni_id_token_expired', res.result.tokenExpired)
+        }).then(res => {
+          console.log(res,12)
+          if (res.success) {
+            this.$toast('注册成功')
+            // 跳转
+            
+          } else {
+            this.$toast(res.result.msg)
           }
-        }).catch(() => {
-          uni.showModal({
-            showCancel: false,
-            content: '微信登录失败，请稍后再试'
-          })
         })
       }
-
     }
   }
 </script>
 
 <style lang="less">
-  .contafier {
-    width: 100%;
+  .user-img {
+    overflow: hidden;
+    display: block;
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 30%;
+  }
 
-    .user {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      height: 300rpx;
-      background-color: #e2500c;
-      border-radius: 0 0 30rpx 30rpx;
+  .user-name {
+    font-size: 35rpx;
+  }
 
-      .user_img {
-        width: 99rpx;
-        height: 99rpx;
-      }
+  .contia {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .box {
+
+    input {
+      width: 60%;
+      height: 80rpx;
+      border: 1rpx solid #cccccc;
+      font-size: 35rpx;
+      box-shadow: 0 0 3rpx black;
+      border-radius: 20rpx;
     }
   }
 </style>
