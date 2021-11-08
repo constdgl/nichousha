@@ -1,5 +1,7 @@
 import App from './App'
 import store from './store/index.js'
+import cuCustom from './colorui/components/cu-custom.vue'
+Vue.component('cu-custom',cuCustom)
 
 require('./utils/plugins.js')
 

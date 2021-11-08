@@ -9,6 +9,12 @@
     {
       "path": "pages/start/index",
       "style": {
+        "navigationBarTitleText": "我的"
+      }
+    },
+    {
+      "path": "pages/other/other",
+      "style": {
         "navigationBarTitleText": "无敌"
       }
     }
@@ -22,7 +28,12 @@
       "pagePath": "pages/index/index",
       "iconPath": "./static/f1.png",
       "selectedIconPath": "./static/f1.png",
-      "text": "其他"
+      "text": "轮播图"
+    }, {
+      "pagePath": "pages/other/other",
+      "iconPath": "./static/f2.png",
+      "selectedIconPath": "./static/f2.png",
+      "text": "卡片"
     }, {
       "pagePath": "pages/start/index",
       "iconPath": "./static/f2.png",
@@ -33,7 +44,7 @@
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
-    // "navigationStyle": "custom",
+    "navigationStyle": "custom",
     "navigationBarBackgroundColor": "#eeeeee",
     "backgroundColor": "#eaeaea"
   }

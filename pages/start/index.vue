@@ -1,5 +1,9 @@
 <template>
   <view class="login">
+    <cu-custom bgColor="bg-gradual-pink" :isBack="true">
+      <!-- <block slot="backText">返回</block> -->
+      <block slot="content">我的</block>
+    </cu-custom>
     <div class="contia">
       <view class="user-img">
         <open-data type="userAvatarUrl"></open-data>
