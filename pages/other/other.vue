@@ -1,9 +1,9 @@
 <template>
   <view>
-    <cu-custom bgColor="bg-gradual-pink" :isBack="true">
-      <!-- <block slot="backText">返回</block> -->
+    <!-- <cu-custom bgColor="bg-gradual-pink" :isBack="true">
+       <block slot="backText">返回</block>
       <block slot="content">卡片</block>
-    </cu-custom>
+    </cu-custom> -->
     <view class="cu-bar bg-white solid-bottom">
       <view class="action">
         <text class="cuIcon-titles text-orange"></text> 案例类卡片

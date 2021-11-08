@@ -1,9 +1,9 @@
 <template>
   <view>
-    <cu-custom bgColor="bg-gradual-pink" :isBack="true">
-      <!-- <block slot="backText">返回</block> -->
+    <!-- <cu-custom bgColor="bg-gradual-pink" :isBack="true">
+      <block slot="backText">返回</block>
       <block slot="content">轮播图</block>
-    </cu-custom>
+    </cu-custom> -->
     <view class="cu-bar bg-white">
       <view class="action">
         <text class="cuIcon-title text-pink"></text> 
@@ -163,11 +163,5 @@
     transform: scale(calc(0.5 + var(--index) / 10));
     margin-left: calc(var(--left) * 100upx - 150upx);
     z-index: var(--index);
-  }
-  .cu-custom{
-    height: 100rpx;
-  }
-  .cu-custom .cu-bar{
-    height: 100rpx;
   }
 </style>

@@ -1858,6 +1858,7 @@ button.cuIcon.lg {
 .cu-custom {
 	display: block;
 	position: relative;
+  height: 100upx;
 }
 
 .cu-custom .cu-bar .content {
@@ -1877,7 +1878,7 @@ button.cuIcon.lg {
 }
 
 .cu-custom .cu-bar {
-	min-height: 0px;
+	min-height: 100upx;
 	/* #ifdef MP-WEIXIN */
 	padding-right: 220upx;
 	/* #endif */
