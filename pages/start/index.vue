@@ -21,7 +21,7 @@
 
     <button type="default" @click="getUserInfo" open-type="getUserInfo">登录</button>
     <button type="default" @click="register" open-type="getUserInfo">注册</button>
-    <button type="default" @click="loginWithWechat">获取openid</button>
+    <!-- <button type="default" @click="loginWithWechat">获取openid</button> -->
   </view>
 </template>
 

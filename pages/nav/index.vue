@@ -5,7 +5,7 @@
         <block slot="backText">返回</block>
         <block slot="content">列表</block>
       </cu-custom>
-    </view> -->
+    </view> --> 
     <swiper class="screen-swiper round-dot" :indicator-dots="true" :circular="true" :autoplay="true" interval="5000"
       duration="500">
       <swiper-item v-for="(item,index) in 4" :key="index">
