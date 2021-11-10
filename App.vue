@@ -1,10 +1,8 @@
 <script>
   export default {
     onLaunch: function() {
-      console.log('App Launch', 123);
       // 监听路由切换
       wx.onAppRoute(function(res) {
-        console.log('route', res)
         let pages = getCurrentPages()
         let view = pages[pages.length - 1]
         if (view) {

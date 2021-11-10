@@ -11,8 +11,9 @@
         {{item.name}}
       </view>
     </scroll-view>
-    <view v-for="(item,index) in categoryMenu" :key="index" v-if="index==TabCur" class="bg-grey padding margin text-center">
-    	Tab{{index}}
+    <view v-for="(item,index) in categoryMenu" :key="index" v-if="index==TabCur"
+      class="bg-grey padding margin text-center">
+      Tab{{index}}
     </view>
   </view>
 </template>
@@ -27,6 +28,7 @@
       };
     },
     onLoad() {
+      
       this.getCategoryMenu();
     },
     methods: {
