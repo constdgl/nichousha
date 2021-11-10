@@ -21,9 +21,9 @@
     {
       "path": "pages/nav/index",
       "style": {
-        "navigationBarTitleText": "列表"
+        "navigationBarTitleText": "列表",
+        "navigationStyle":"custom"
       }
-
     }
   ],
   "tabBar": {

@@ -1,6 +1,6 @@
 <template>
   <view class="login">
-   <!-- <cu-custom bgColor="bg-gradual-pink" :isBack="true">
+    <!-- <cu-custom bgColor="bg-gradual-pink" :isBack="true">
       <block slot="backText">返回</block> 
       <block slot="content">我的</block>
     </cu-custom> -->
@@ -19,8 +19,9 @@
       密码：<input type="text" v-model="password">
     </div>
 
-    <button type="default" @click="getUserInfo" open-type="getUserInfo">登录</button>
-    <button type="default" @click="register" open-type="getUserInfo">注册</button>
+    <button type="default" @click="getUserInfo">登录</button>
+    <button type="default" @click="register">注册</button>
+    <button type="default" @click="detail">查询</button>
     <!-- <button type="default" @click="loginWithWechat">获取openid</button> -->
   </view>
 </template>
@@ -33,13 +34,16 @@
         password: '',
         openid: '',
         username: '',
-        isConfirm: false
+        isConfirm: false,
+        categoryMenu: []
       }
     },
     onShow() {
+      this.getCategoryMenu();
 
     },
     methods: {
+      
       getUserInfo() {
         if (!this.username && !this.password) {
           this.$toast('请输入信息');
@@ -71,12 +75,13 @@
               console.log(res1.result.data.openid, 123)
               _this.openid = res1.result.data.openid;
               _this.$toast('openid=' + _this.openid)
-            }).catch(err=>{
+            }).catch(err => {
               _this.$toast(err)
             })
           }
         })
       },
+      // 注册
       register() {
         if (!this.username || !this.password) {
           this.$toast('请填写正确信息')
@@ -84,23 +89,31 @@
         }
         let data = {
           username: this.username,
-          password: this.password
+          password: this.password,
+          type: 'add'
         }
         // 这里我们使用原始写法
-        uniCloud.callFunction({
-          name: 'user',
-          // 因为登录注册都属于 use表，感觉index文件可能代码混杂，加个type加以区分，登录的type是get
-          data: Object.assign({}, data, {
-            type: 'add'
-          })
-        }).then(res => {
-          console.log(res,12)
+        this.$uniCloud('user', data).then(res => {
           if (res.success) {
-            this.$toast('注册成功')
+            this.$toast(res.result.msg);
             // 跳转
-            
+
           } else {
             this.$toast(res.result.msg)
+          }
+        })
+      },
+      detail() {
+        // 这里我们使用原始写法
+        this.$uniCloud('user', {
+          type: 'get'
+        }).then(res => {
+          if (res.success) {
+            this.$toast(res);
+            // 跳转
+
+          } else {
+            this.$toast(res)
           }
         })
       }
