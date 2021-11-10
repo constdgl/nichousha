@@ -24,11 +24,12 @@
       return {
         TabCur: 0,
         scrollLeft: 0,
-        categoryMenu: []
+        categoryMenu: [],
+        pageStart: 0
       };
     },
     onLoad() {
-      
+
       this.getCategoryMenu();
     },
     methods: {
@@ -38,13 +39,25 @@
         }).then(res => {
           if (res.success) {
             this.categoryMenu = res.result.data;
+            console.log(this.categoryMenu,123)
+            this.getList();
           }
         })
-        // this.getList('refresh', pageStart)
+      },
+      getList() {
+        // 请求数据, 第0页开始 1-10条
+        this.$uniCloud('article', {
+          categoryId: this.categoryMenu[this.TabCur]._id,
+          currentPage: 1, // 第几页
+          pageSize:10 // 每页数量
+        }).then(res=>{
+          console.log(res.result, 123456)
+        })
       },
       tabSelect(e) {
         this.TabCur = e.currentTarget.dataset.id;
-        this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60
+        this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60;
+        this.getCategoryMenu();
       }
     }
   }
