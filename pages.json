@@ -7,6 +7,18 @@
       }
     },
     {
+      "path": "pages/index/add/index",
+      "style": {
+        "navigationBarTitleText": "提交表单"
+      }
+    },
+    {
+      "path": "pages/index/detail/index",
+      "style": {
+        "navigationBarTitleText": "详情"
+      }
+    },
+    {
       "path": "pages/start/index",
       "style": {
         "navigationBarTitleText": "我的"

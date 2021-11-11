@@ -39,7 +39,6 @@
       }
     },
     onShow() {
-      this.getCategoryMenu();
 
     },
     methods: {
@@ -122,6 +121,9 @@
 </script>
 
 <style lang="less">
+  .login {
+    padding: 0 20rpx;
+  }
   .user-img {
     overflow: hidden;
     display: block;
@@ -140,7 +142,6 @@
   }
 
   .box {
-
     input {
       width: 60%;
       height: 80rpx;
@@ -149,5 +150,10 @@
       box-shadow: 0 0 3rpx black;
       border-radius: 20rpx;
     }
+  }
+  button{
+    width: 50%;
+    border-radius: 20rpx;
+    margin: 20rpx auto;
   }
 </style>

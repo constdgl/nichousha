@@ -1,24 +1,17 @@
-// 以下代码在article云函数中, 相信大家一看会很清楚
 'use strict';
+const {
+  get
+} = require('./get');
+const {
+  add
+} = require('./add/index.js')
 const db = uniCloud.database()
-const dbCmd = db.command
-
 
 exports.main = async (event, context) => {
-  const collection = db.collection('article')
-  // 总条数
-  let total = await collection.where({
-    categoryId: event.categoryId
-  }).count()
-
-
-  // 获取文章列表
-  let start = event.currentPage * event.pageSize
-  let res = await collection.where({
-    categoryId: event.categoryId
-  }).orderBy('date', 'desc').skip(start).limit(event.pageSize).get();
-  return {
-    total: total.total,
-    list: res.data
+  switch (event.type) {
+    case 'get':
+      return await get(event);
+    case 'add':
+      return await add(event)
   }
-};
+}
