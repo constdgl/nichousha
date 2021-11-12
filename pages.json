@@ -34,7 +34,7 @@
       "path": "pages/nav/index",
       "style": {
         "navigationBarTitleText": "列表",
-        "navigationStyle":"custom"
+        "navigationStyle": "custom"
       }
     }
   ],
@@ -53,7 +53,7 @@
       "iconPath": "./static/f2.png",
       "selectedIconPath": "./static/f2.png",
       "text": "卡片"
-    },{
+    }, {
       "pagePath": "pages/nav/index",
       "iconPath": "./static/f2.png",
       "selectedIconPath": "./static/f2.png",
@@ -63,13 +63,13 @@
       "iconPath": "./static/f2.png",
       "selectedIconPath": "./static/f2.png",
       "text": "我的"
-    } ]
+    }]
   },
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
     // "navigationStyle": "custom",
     "navigationBarBackgroundColor": "#eeeeee",
-    "backgroundColor": "#eaeaea"
+    "backgroundColor": "#eaeaea",
   }
 }

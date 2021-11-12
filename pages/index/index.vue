@@ -43,14 +43,21 @@
           url:'./detail/index'
         })
       },
-      getCategoryMenu() {
-        this.$uniCloud('articleCategory', {
-          type: 'get'
-        }).then(res => {
-          if (res.success) {
-            this.categoryMenu = res.result.data;
-          }
-        })
+      // getCategoryMenu() {
+      //   this.$uniCloud('articleCategory', {
+      //     type: 'get'
+      //   }).then(res => {
+      //     if (res.success) {
+      //       this.categoryMenu = res.result.data;
+      //     }
+      //   })
+      // },
+      async getCategoryMenu() {
+       let res = await this.$uniCloud('articleCategory',{type: 'get'});
+       console.log(res,123)
+       if(res.success) {
+         this.categoryMenu = res.result.data;
+       }
       },
       tabSelect(e) {
         this.TabCur = e.currentTarget.dataset.id;

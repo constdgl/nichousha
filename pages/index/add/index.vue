@@ -15,8 +15,11 @@
     <view class="content">
       <p>时间：</p>
       <view class="example-body">
-        <uni-datetime-picker placeholder="请选择" :border="false" v-model="date" />
+        <uni-datetime-picker type="date" v-model="date"/>
       </view>
+      <!-- <view class="example-body">
+        <uni-datetime-picker placeholder="请选择" :border="false" v-model="date" />
+      </view> -->
     </view>
     <view class="content">
       <p>内容：</p>
@@ -34,6 +37,7 @@
       return {
         imageValue: [],
         title: '',
+        show: false,
         headImg: '',
         date: '2021-11-3',
         description: '',
@@ -68,7 +72,7 @@
         }).then(res => {
           this.$toast('添加成功');
           uni.navigateTo({
-            url:'/pages/index/index'
+            url: '/pages/index/index'
           })
           console.log(res, 123456)
         })
