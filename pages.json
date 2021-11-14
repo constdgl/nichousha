@@ -70,6 +70,6 @@
     "navigationBarTitleText": "uni-app",
     // "navigationStyle": "custom",
     "navigationBarBackgroundColor": "#eeeeee",
-    "backgroundColor": "#eaeaea",
+    "backgroundColor": "#eaeaea"
   }
 }
