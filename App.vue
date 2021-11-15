@@ -2,7 +2,7 @@
   export default {
     onLaunch: function() {
       // 监听路由切换
-      wx.onAppRoute(function(res) {
+      wx.onAppRoute(function(res)  {
         let pages = getCurrentPages()
         let view = pages[pages.length - 1]
         if (view) {
