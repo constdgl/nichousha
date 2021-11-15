@@ -132,6 +132,9 @@
       };
     },
     onLoad() {
+      uni.showLoading({
+        title:'加载中'
+      })
       this.getCategoryMenu();
       setTimeout(() => {
         this.init(); // 画刻度尺
@@ -222,6 +225,7 @@
         }).then(res => {
           if (res.success) {
             this.categoryMenu = res.result.data;
+            uni.hideLoading();
           }
         })
       },

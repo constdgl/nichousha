@@ -71,8 +71,8 @@
           description: this.description
         }).then(res => {
           this.$toast('添加成功');
-          uni.navigateTo({
-            url: '/pages/index/index'
+          uni.switchTab({
+            url:'index/index'
           })
           console.log(res, 123456)
         })

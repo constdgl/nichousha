@@ -1,6 +1,7 @@
 <script>
   export default {
     onLaunch: function() {
+      
       // 监听路由切换
       wx.onAppRoute(function(res)  {
         let pages = getCurrentPages()
@@ -14,7 +15,13 @@
       })
     },
     onShow: function() {
-      console.log('App Show')
+      if (uni.getStorageSync('userInfo')) {
+        console.log('获取信息成功')
+      } else {
+        uni.redirectTo({
+          url:'/pages/login'
+        })
+      }
     },
     onHide: function() {
       console.log('App Hide')

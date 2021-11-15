@@ -19,6 +19,12 @@
       }
     },
     {
+      "path": "pages/login",
+      "style": {
+        "navigationBarTitleText": "登录"
+      }
+    },
+    {
       "path": "pages/start/index",
       "style": {
         "navigationBarTitleText": "我的"
@@ -69,7 +75,7 @@
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
     // "navigationStyle": "custom",
-    "navigationBarBackgroundColor": "#eeeeee",
-    "backgroundColor": "#eaeaea"
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#ffffff"
   }
 }

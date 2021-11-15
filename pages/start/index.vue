@@ -1,27 +1,29 @@
 <template>
   <view class="login">
-    <!-- <cu-custom bgColor="bg-gradual-pink" :isBack="true">
-      <block slot="backText">返回</block> 
-      <block slot="content">我的</block>
-    </cu-custom> -->
     <div class="contia">
       <view class="user-img">
-        <open-data type="userAvatarUrl"></open-data>
+        <img class="user-img2" :src="userImg" alt="">
+        <!-- <open-data type="userAvatarUrl"></open-data> -->
       </view>
       <view class="user-name">
-        <open-data type="userNickName"></open-data>
+        {{ userName }}
+        <!-- <open-data type="userNickName"></open-data> -->
       </view>
     </div>
-    <div class="box">
+    <!-- <div class="box">
       用户名：<input type="text" v-model="username">
     </div>
     <div class="box">
       密码：<input type="text" v-model="password">
-    </div>
-
-    <button type="default" @click="getUserInfo">登录</button>
+    </div> -->
+    <view class="boxList">
+      <view class="button" @click="getUser">获取用户</view>
+      <view class="button" @click="addSubmit(1)">新增</view>
+      <view class="button" @click="addSubmit(2)">详情</view>
+    </view>
+    <!-- <button type="default" @click="getUserInfo">登录</button>
     <button type="default" @click="register">注册</button>
-    <button type="default" @click="detail">查询</button>
+    <button type="default" @click="detail">查询</button> -->
     <!-- <button type="default" @click="loginWithWechat">获取openid</button> -->
   </view>
 </template>
@@ -32,17 +34,42 @@
       return {
         username: '',
         password: '',
+        userImg: '',
+        userName: '',
         openid: '',
-        username: '',
         isConfirm: false,
         categoryMenu: []
       }
     },
     onShow() {
-
+      if (uni.getStorageSync('userInfo')) {
+        this.userImg = uni.getStorageSync('userInfo').avatarUrl;
+        this.userName = uni.getStorageSync('userInfo').nickName;
+      }
     },
     methods: {
-      
+      addSubmit(index) {
+        if (index == 1) {
+          uni.navigateTo({
+            url: `/pages/index/add/index`
+          })
+        } else {
+          uni.navigateTo({
+            url: `/pages/index/detail/index`
+          })
+        }
+      },
+      getUser() {
+        wx.getUserProfile({
+          desc: '用于显示用户头像与昵称', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+          success: (res) => {
+            uni.setStorageSync('userInfo', res.userInfo)
+            this.userImg = res.userInfo.avatarUrl;
+            this.userName = res.userInfo.nickName;
+            console.log(res.userInfo, 123)
+          }
+        })
+      },
       getUserInfo() {
         if (!this.username && !this.password) {
           this.$toast('请输入信息');
@@ -124,21 +151,39 @@
   .login {
     padding: 0 20rpx;
   }
-  .user-img {
-    overflow: hidden;
-    display: block;
-    width: 120rpx;
-    height: 120rpx;
-    border-radius: 30%;
-  }
 
-  .user-name {
-    font-size: 35rpx;
-  }
+
 
   .contia {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 50rpx auto;
+    width: 90%;
+    height: 300rpx;
+    background-color: #FFFFFF;
+    border-radius: 40rpx;
+
+    .user-img {
+      margin-top: 10rpx;
+      overflow: hidden;
+      display: block;
+      width: 120rpx;
+      height: 120rpx;
+      border-radius: 30%;
+
+      .user-img2 {
+        width: 120rpx;
+        height: 120rpx;
+        border-radius: 30%;
+      }
+    }
+
+    .user-name {
+      width: 100%;
+      font-size: 35rpx;
+      text-align: center;
+    }
   }
 
   .box {
@@ -151,9 +196,22 @@
       border-radius: 20rpx;
     }
   }
-  button{
-    width: 50%;
-    border-radius: 20rpx;
-    margin: 20rpx auto;
+
+
+  .boxList {
+    margin: 0 auto;
+    width: 90%;
+    background-color: #FFFFFF;
+    border-radius: 40rpx;
+
+    .button {
+      width: 100%;
+      height: 100rpx;
+      padding-left: 35rpx;
+      font-size: 35rpx;
+      margin: 20rpx auto;
+      line-height: 100rpx;
+      text-align: left;
+    }
   }
 </style>
