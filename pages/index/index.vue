@@ -98,6 +98,7 @@
       </view>
       <!-- 新增 end -->
     </view>
+    <loading v-show="isLoading"></loading>
   </view>
 </template>
 
@@ -105,6 +106,7 @@
   export default {
     data() {
       return {
+        isLoading:false,
         TabCur: 0,
         list: [],
         allNumLeft: '',
@@ -132,9 +134,7 @@
       };
     },
     onLoad() {
-      uni.showLoading({
-        title:'加载中'
-      })
+      this.isLoading = true;
       this.getCategoryMenu();
       setTimeout(() => {
         this.init(); // 画刻度尺
@@ -225,7 +225,7 @@
         }).then(res => {
           if (res.success) {
             this.categoryMenu = res.result.data;
-            uni.hideLoading();
+            this.isLoading = false;
           }
         })
       },

@@ -19,6 +19,7 @@
     <view class="boxList">
       <view class="button" @click="getUser">获取用户</view>
       <view class="button" @click="addSubmit(1)">新增</view>
+      <loading v-show="isLoading"></loading>
       <view class="button" @click="addSubmit(2)">详情</view>
     </view>
     <!-- <button type="default" @click="getUserInfo">登录</button>
@@ -30,8 +31,10 @@
 
 <script>
   export default {
+
     data() {
       return {
+        isLoading: false,
         username: '',
         password: '',
         userImg: '',
@@ -152,8 +155,6 @@
     padding: 0 20rpx;
   }
 
-
-
   .contia {
     display: flex;
     justify-content: center;
@@ -212,6 +213,28 @@
       margin: 20rpx auto;
       line-height: 100rpx;
       text-align: left;
+    }
+  }
+
+  .test-load {
+    text-align: center;
+
+    .item {
+      position: relative;
+      display: flex;
+      height: 350rpx;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10rpx;
+      margin-top: 10rpx;
+      flex: 0 0 350rpx;
+      background: #040038;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .title {
+      color: #000000;
     }
   }
 </style>

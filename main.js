@@ -1,7 +1,9 @@
 import App from './App'
 import store from './store/index.js'
 import cuCustom from './colorui/components/cu-custom.vue'
+import loading8 from "./components/loading8.vue";
 Vue.component('cu-custom',cuCustom)
+Vue.component('loading',loading8)
 
 require('./utils/plugins.js')
 
