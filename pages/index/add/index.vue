@@ -70,11 +70,17 @@
           date: this.date,
           description: this.description
         }).then(res => {
-          this.$toast('添加成功');
-          uni.switchTab({
-            url:'index/index'
-          })
-          console.log(res, 123456)
+          if(res.result.msg.indexOf('标题') >-1){
+            this.$toast(res.result.msg);
+            
+          }else{
+            this.$toast('提交成功');
+            setTimeout(()=>{
+              uni.switchTab({
+                url:'/pages/index/index'
+              })
+            },1000)
+          }
         })
       },
       // 获取上传状态

@@ -62,7 +62,7 @@
       <!-- 刻度尺 end -->
       <!-- 详情 start -->
       <view v-if="TabCur == 2">
-        <u-count-down :time="30 * 60 * 60 * 1000" format="HH:mm:ss"></u-count-down>
+        <!-- <u-count-down :time="30 * 60 * 60 * 1000" format="HH:mm:ss"></u-count-down> -->
       </view>
       <!-- 详情 end -->
       <!-- 新增 start -->
@@ -268,10 +268,17 @@
           date: this.date,
           description: this.description
         }).then(res => {
-          this.$toast('添加成功');
-          uni.navigateTo({
-            url: '/pages/index/index'
-          })
+          if(res.result.msg.indexOf('标题') >-1){
+            this.$toast(res.result.msg);
+            
+          }else{
+            this.$toast('提交成功');
+            setTimeout(()=>{
+              uni.switchTab({
+                url:'/pages/index/index'
+              })
+            },1000)
+          }
         })
       },
       // 上传成功

@@ -5,29 +5,11 @@ exports.add = async (data) => {
   const collection = db.collection('article');
 
   // let article = await collection.where({
-
+  let artile = await collection.where({
+    title: data.title
+  }).get() // 切记获取最后一定要 get()
   // })
-  if (data.headImg == '') {
-    return {
-      code: global.wrongCode,
-      msg: '请上传图片'
-    }
-  } else if (data.title == '') {
-    return {
-      code: global.wrongCode,
-      msg: '请填写标题'
-    }
-  } else if (data.date == '') {
-    return {
-      code: global.wrongCode,
-      msg: '请选择时间'
-    }
-  } else if (data.description == '') {
-    return {
-      code: global.wrongCode,
-      msg: '请填写内容'
-    }
-  } else {
+  if (artile.affectedDocs < 1) {
     const res = await collection.add({
       headImg: data.headImg,
       title: data.title,
@@ -36,8 +18,15 @@ exports.add = async (data) => {
     })
     return {
       code: global.successCode,
-      msg: global.successMsg
+      msg: '提交成功'
+    }
+  } else {
+    return {
+      code: global.wrongCode,
+      msg: '文章标题重复，请重新输入'
     }
   }
+
+
 
 }
