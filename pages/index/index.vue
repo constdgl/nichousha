@@ -62,7 +62,7 @@
       <!-- 刻度尺 end -->
       <!-- 详情 start -->
       <view v-if="TabCur == 2">
-
+        <u-count-down :time="30 * 60 * 60 * 1000" format="HH:mm:ss"></u-count-down>
       </view>
       <!-- 详情 end -->
       <!-- 新增 start -->
@@ -106,7 +106,7 @@
   export default {
     data() {
       return {
-        isLoading:false,
+        isLoading: false,
         TabCur: 0,
         list: [],
         allNumLeft: '',
@@ -149,9 +149,8 @@
         }).then(res => {
           if (res.success) {
             this.list = res.result.data;
+            this.isLoading = false;
           }
-          console.log(res, 123)
-          console.log(res.result.data);
         })
       },
       /**
@@ -225,7 +224,6 @@
         }).then(res => {
           if (res.success) {
             this.categoryMenu = res.result.data;
-            this.isLoading = false;
           }
         })
       },
@@ -285,7 +283,7 @@
     }
   }
 </script>
-<style lang="less">
+<style lang="less" scoped>
   /**
    * 刻度尺
    */
@@ -445,6 +443,7 @@
 
   .TabCur3 {
     background-color: #FFFFFF;
+
     /**
     * 页面开头
     */

@@ -1,11 +1,11 @@
 <template>
   <view>
-    <view class="fixed">
+    <!-- <view class="fixed">
       <cu-custom :isBack="true" bgColor="bg-shadeTop text-white">
         <block slot="backText">返回</block>
         <block slot="content">列表</block>
       </cu-custom>
-    </view> 
+    </view> -->
     <swiper class="screen-swiper round-dot" :indicator-dots="true" :circular="true" :autoplay="true" interval="5000"
       duration="500">
       <swiper-item v-for="(item,index) in 4" :key="index">
@@ -118,6 +118,7 @@
         </view>
       </scroll-view>
     </view>
+    <loading v-show="isLoading"></loading>
   </view>
 </template>
 
@@ -125,6 +126,7 @@
   export default {
     data() {
       return {
+        isLoading:false,
         list: [],
         tabCur: 0,
         mainCur: 0,
@@ -133,10 +135,7 @@
       };
     },
     onLoad() {
-      uni.showLoading({
-        title: '加载中...',
-        mask: true
-      });
+      this.isLoading = true;
       let list = [{}];
       for (let i = 0; i < 26; i++) {
         list[i] = {};
@@ -147,7 +146,7 @@
       this.listCur = list[0];
     },
     onReady() {
-      uni.hideLoading()
+      this.isLoading = false;
     },
     methods: {
       TabSelect(e) {

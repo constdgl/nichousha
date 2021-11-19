@@ -39,8 +39,8 @@
     {
       "path": "pages/nav/index",
       "style": {
-        "navigationBarTitleText": "列表",
-        "navigationStyle": "custom"
+        "navigationBarTitleText": "列表"
+        // "navigationStyle": "custom"
       }
     }
   ],
@@ -77,5 +77,8 @@
     // "navigationStyle": "custom",
     "navigationBarBackgroundColor": "#ffffff",
     "backgroundColor": "#ffffff"
+  },
+  "easycom": {
+    "^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
   }
 }

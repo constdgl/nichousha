@@ -4,7 +4,8 @@ import cuCustom from './colorui/components/cu-custom.vue'
 import loading8 from "./components/loading8.vue";
 Vue.component('cu-custom',cuCustom)
 Vue.component('loading',loading8)
-
+import uView from "uview-ui";
+Vue.use(uView);
 require('./utils/plugins.js')
 
 // #ifndef VUE3
