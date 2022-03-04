@@ -1,7 +1,7 @@
 <script>
   export default {
     onLaunch: function() {
-
+      console.log('buzhidao');
       // 监听路由切换
       wx.onAppRoute(function(res) {
         let pages = getCurrentPages()
